@@ -1,10 +1,11 @@
 package main
 
 import (
-	"admin/config"
-	cons "admin/models"
-	"admin/routes"
 	"fmt"
+
+	"github.com/assyatier21/admin-deall-technical-test/config"
+	cons "github.com/assyatier21/admin-deall-technical-test/models"
+	"github.com/assyatier21/admin-deall-technical-test/routes"
 )
 
 func main() {

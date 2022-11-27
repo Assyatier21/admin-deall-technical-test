@@ -1,4 +1,4 @@
-module admin
+module github.com/assyatier21/admin-deall-technical-test
 
 go 1.19
 

@@ -1,9 +1,10 @@
 package routes
 
 import (
-	ctrl "admin/controller"
-	"admin/controller/auth"
 	"net/http"
+
+	"github.com/assyatier21/admin-deall-technical-test/auth"
+	ctrl "github.com/assyatier21/admin-deall-technical-test/controller"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
