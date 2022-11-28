@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-deall
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: admin-deall
+  template:
+    metadata:
+      labels:
+        app: admin-deall
+    spec:
+      containers:
+        - name: admin-deall
+          image: admin-deall
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8800
+          livenessProbe:
+            tcpSocket:
+              port: 8800
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: 8800
+            initialDelaySeconds: 5
+            timeoutSeconds: 1

@@ -1,16 +1,17 @@
 package controller
 
 import (
-	"github.com/assyatier21/admin-deall-technical-test/config"
-	"github.com/assyatier21/admin-deall-technical-test/database"
-	e "github.com/assyatier21/admin-deall-technical-test/entity"
-	"github.com/assyatier21/admin-deall-technical-test/models"
-	"github.com/assyatier21/admin-deall-technical-test/utils"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/assyatier21/admin-deall-technical-test/config"
+	"github.com/assyatier21/admin-deall-technical-test/database"
+	e "github.com/assyatier21/admin-deall-technical-test/entity"
+	"github.com/assyatier21/admin-deall-technical-test/models"
+	"github.com/assyatier21/admin-deall-technical-test/utils"
 
 	"github.com/labstack/echo/v4"
 )
@@ -78,7 +79,7 @@ func GetRegisteredUser(c echo.Context) (err error) {
 
 	for rows.Next() {
 		var temp = e.RegisteredUser{}
-		if err := rows.Scan(&temp.Id, &temp.Username, &temp.RoleId, &temp.Token); err != nil {
+		if err := rows.Scan(&temp.Id, &temp.Username, &temp.RoleId); err != nil {
 			log.Fatal(err)
 		}
 		data = append(data, temp)

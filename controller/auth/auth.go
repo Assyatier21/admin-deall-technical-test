@@ -1,16 +1,17 @@
 package auth
 
 import (
-	"github.com/assyatier21/admin-deall-technical-test/config"
-	"github.com/assyatier21/admin-deall-technical-test/database"
-	e "github.com/assyatier21/admin-deall-technical-test/entity"
-	"github.com/assyatier21/admin-deall-technical-test/models"
-	"github.com/assyatier21/admin-deall-technical-test/utils"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/assyatier21/admin-deall-technical-test/config"
+	"github.com/assyatier21/admin-deall-technical-test/database"
+	e "github.com/assyatier21/admin-deall-technical-test/entity"
+	"github.com/assyatier21/admin-deall-technical-test/models"
+	"github.com/assyatier21/admin-deall-technical-test/utils"
 
 	"github.com/labstack/echo/v4"
 )
@@ -52,14 +53,14 @@ func Login(c echo.Context) (err error) {
 		}
 		fmt.Println(temp)
 
-		var registeredUser = e.RegisteredUser{}
+		var LoginUser = e.LoginUser{}
 
-		registeredUser.Id = temp.Id
-		registeredUser.Username = temp.Username
-		registeredUser.RoleId = temp.RoleId
-		registeredUser.Token = temp.Token
+		LoginUser.Id = temp.Id
+		LoginUser.Username = temp.Username
+		LoginUser.RoleId = temp.RoleId
+		LoginUser.Token = temp.Token
 
-		data = append(data, registeredUser)
+		data = append(data, LoginUser)
 	}
 
 	if len(data) > 0 {
@@ -111,7 +112,6 @@ func Register(c echo.Context) (err error) {
 	registeredUser.Id = id
 	registeredUser.Username = user.Username
 	registeredUser.RoleId = user.RoleId
-	registeredUser.Token = models.AccessToken
 
 	data = append(data, registeredUser)
 
