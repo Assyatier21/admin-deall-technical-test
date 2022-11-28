@@ -1,6 +1,6 @@
 package models
 
-import "admin/entity"
+import "github.com/assyatier21/admin-deall-technical-test/entity"
 
 const (
 	Addres      = "127.0.0.1"

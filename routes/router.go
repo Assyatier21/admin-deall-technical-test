@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/assyatier21/admin-deall-technical-test/auth"
 	ctrl "github.com/assyatier21/admin-deall-technical-test/controller"
+	"github.com/assyatier21/admin-deall-technical-test/controller/auth"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
