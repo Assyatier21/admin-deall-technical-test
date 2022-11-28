@@ -1,17 +1,18 @@
 package controller
 
 import (
-	"github.com/assyatier21/admin-deall-technical-test/config"
-	"github.com/assyatier21/admin-deall-technical-test/database"
-	e "github.com/assyatier21/admin-deall-technical-test/entity"
-	"github.com/assyatier21/admin-deall-technical-test/models"
-	"github.com/assyatier21/admin-deall-technical-test/utils"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/assyatier21/admin-deall-technical-test/config"
+	"github.com/assyatier21/admin-deall-technical-test/database"
+	e "github.com/assyatier21/admin-deall-technical-test/entity"
+	"github.com/assyatier21/admin-deall-technical-test/models"
+	"github.com/assyatier21/admin-deall-technical-test/utils"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,7 +21,6 @@ var (
 	article e.Article
 	user    e.User
 	query   string
-	data    []interface{}
 )
 
 func InsertArticle(c echo.Context) (err error) {
@@ -29,6 +29,7 @@ func InsertArticle(c echo.Context) (err error) {
 		title      string
 		content    string
 		created_by int
+		data       []interface{}
 	)
 	currentTime := time.Now()
 	c.Bind(&article)
@@ -86,6 +87,7 @@ func InsertArticle(c echo.Context) (err error) {
 	}
 }
 func GetArticleByID(c echo.Context) (err error) {
+	var data []interface{}
 	id, err := strconv.Atoi(c.FormValue("id"))
 	if err != nil {
 		res := models.SetResponse(http.StatusBadRequest, "article id must be an integer", []interface{}{})
@@ -114,6 +116,7 @@ func UpdateArticleByID(c echo.Context) (err error) {
 		title   string
 		content string
 		points  int
+		data    []interface{}
 	)
 
 	err = c.Bind(&article)
@@ -174,6 +177,7 @@ func UpdateArticleByID(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, res)
 }
 func DeleteArticleByID(c echo.Context) (err error) {
+	var data []interface{}
 	id, err := strconv.Atoi(c.FormValue("id"))
 	if err != nil {
 		res := models.SetResponse(http.StatusBadRequest, "article id must be an integer", []interface{}{})

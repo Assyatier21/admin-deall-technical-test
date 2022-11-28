@@ -20,6 +20,7 @@ func CreateRegisteredUser(c echo.Context) (err error) {
 	var (
 		registeredUser e.RegisteredUser
 		rows           sql.Result
+		data           []interface{}
 	)
 
 	c.Bind(&user)
@@ -69,6 +70,7 @@ func CreateRegisteredUser(c echo.Context) (err error) {
 func GetRegisteredUser(c echo.Context) (err error) {
 	var (
 		rows *sql.Rows
+		data []interface{}
 	)
 
 	query = fmt.Sprintf(database.GetRegisteredUser)
@@ -100,6 +102,7 @@ func UpdateRegisteredUser(c echo.Context) (err error) {
 		password string
 		role_id  int
 		token    string
+		data     []interface{}
 	)
 
 	err = c.Bind(&user)
@@ -161,6 +164,7 @@ func UpdateRegisteredUser(c echo.Context) (err error) {
 	}
 }
 func DeleteRegisteredUser(c echo.Context) (err error) {
+	var data []interface{}
 	id, err := strconv.Atoi(c.FormValue("id"))
 	if err != nil {
 		res := models.SetResponse(http.StatusBadRequest, "article id must be an integer", []interface{}{})
@@ -187,6 +191,7 @@ func DeleteRegisteredUser(c echo.Context) (err error) {
 func GetUserPoints(c echo.Context) (err error) {
 	var (
 		rows *sql.Rows
+		data []interface{}
 	)
 	query = fmt.Sprintf(database.GetUsersPoints)
 	rows, err = config.DB.Query(query)
@@ -213,6 +218,7 @@ func ResetUserPoints(c echo.Context) (err error) {
 	var (
 		rows sql.Result
 		id   int
+		data []interface{}
 	)
 	c.Bind(&user)
 
